@@ -1,14 +1,27 @@
+@import "@angular/material/prebuilt-themes/indigo-pink.css"; /* Global styles */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import "@angular/material/prebuilt-themes/indigo-pink.css"; /* Global styles */
 
 html, body {
   height: 100%;
 }
 
 body {
+  background-color: rgb(244, 244, 244);
   margin: 0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.container {
+  padding: 50px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.container-sm {
+  padding: 50px;
+  max-width: 800px;
+  margin: auto;
 }

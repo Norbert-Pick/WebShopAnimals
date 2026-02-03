@@ -1,11 +1,16 @@
-<div class="product-grid">
-  @for (product of products; track product.id) {
-    <mat-card class="product-card" appearance="outlined">
-      <img mat-card-image [src]="product.image_url" alt="{{ product.name }}" title="{{ product.name }}" />
-      <mat-card-content>
-        <mat-card-title>{{ product.name }}</mat-card-title>
-        <mat-card-subtitle>{{ product.price | currency: '€ '}}</mat-card-subtitle>
-      </mat-card-content>
-    </mat-card>
-  }
+<div class="container">
+
+    <h2 class="text-[16pt] text-center mb-8 bg-[rgb(204,204,204)] py-2">Zuletzt hinzugefügte Bilder</h2>
+
+    <div class="flex-wrap gap-4 flex justify-center">
+        @for (product of products; track product.id) {
+        <mat-card class="product-card mat-elevation-z0">
+            <img class="product-image" [src]="product.image_url" alt="{{ product.name }}" title="{{ product.name }}" />
+            <mat-card-content class="product-info mat-elevation-z0">
+                <mat-card-title class="product-name">{{ product.name }}</mat-card-title>
+                <mat-card-subtitle class="product-price">{{ product.price | currency: '€ '}}</mat-card-subtitle>
+            </mat-card-content>
+        </mat-card>
+        }
+    </div>
 </div>
