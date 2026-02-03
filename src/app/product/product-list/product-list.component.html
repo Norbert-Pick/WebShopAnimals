@@ -1,8 +1,9 @@
-<div class="container">
+<div class="w-full px-[75px]">
 
     <h2 class="text-[16pt] text-center mb-8 bg-[rgb(204,204,204)] py-2">Zuletzt hinzugefügte Bilder</h2>
 
-    <div class="flex-wrap gap-4 flex justify-center">
+    <div class="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-4">
+
         @for (product of products; track product.id) {
         <mat-card class="product-card mat-elevation-z0">
             <img class="product-image" [src]="product.image_url" alt="{{ product.name }}" title="{{ product.name }}" />
