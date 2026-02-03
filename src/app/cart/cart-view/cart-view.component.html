@@ -1,3 +1,13 @@
 <div class="container-sm">
-    
+    <h2 class="text-[16pt] text-center mb-8 bg-[rgb(204,204,204)] py-2">Mein Warenkorb</h2>
+    <mat-card>
+        <mat-list>
+        @for (item of cartItems; track item.id) {
+            <mat-list-item>
+                <span matListItemTitle>{{item.name}}</span>
+                <span matListItemLine>{{item.price | currency: '€ '}}</span>
+            </mat-list-item>
+        }
+        </mat-list>
+    </mat-card>
 </div>
