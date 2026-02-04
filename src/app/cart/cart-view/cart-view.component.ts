@@ -22,6 +22,7 @@ import { CartService } from '../cart.service';
 })
 export class CartViewComponent implements OnInit {
   cartItems : Product[] = [];
+  totalPrice: number = 0;
 
   constructor(private cartService: CartService) {
    
@@ -30,8 +31,19 @@ export class CartViewComponent implements OnInit {
   ngOnInit(): void {
     this.cartService.getCartItems().subscribe((data) => {
       this.cartItems = data;
+      this.totalPrice = this.cartItems.reduce((sum, item) => sum + item.price, 0);
     });
   }
 
+  clearCart(): void {
+    this.cartService.clearCart().subscribe(() => {
+      this.cartItems = [];
+      this.totalPrice = 0;
+    });
+  }
+
+  checkOutCart(): void {
+    this.cartService.checkOutCart(this.cartItems).subscribe()
+  }
 
 }

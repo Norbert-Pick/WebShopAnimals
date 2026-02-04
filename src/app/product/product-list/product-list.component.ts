@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../product.service';
-import { Product } from '../../models/product';
 import { CommonModule, CurrencyPipe } from '@angular/common';
-import { MatCardModule } from '@angular/material/card';
+import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { CartService } from 'src/app/cart/cart.service';
+import { Product } from '../../models/product';
+import { ProductService } from '../product.service';
 
 
 @Component({
@@ -16,12 +17,22 @@ import { MatButtonModule } from '@angular/material/button';
 export class ProductListComponent implements OnInit {
   products: Product[] = [];
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private cartService: CartService
+  ) {
+
+
+  }
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe((geholteProduktliste) => {
       this.products = geholteProduktliste;
     });
+  }
+
+  addToCart(product: Product): void {
+    this.cartService.addToCart(product).subscribe();
   }
 
 }

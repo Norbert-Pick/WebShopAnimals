@@ -8,6 +8,16 @@
                 <span matListItemLine>{{item.price | currency: '€ '}}</span>
             </mat-list-item>
         }
+            <mat-list-item>
+                <span class="price" matListItemTitle>Summe (€)</span>
+                <span class="price" matListItemLine>{{totalPrice | currency: '€ '}}</span>
+            </mat-list-item>
+            <mat-list-item class="text-right">
+                <button mat-flat-button (click)="clearCart()" color="accent">Warenkorb löschen</button>
+            </mat-list-item>
+            <mat-list-item class="text-right">
+                <button mat-raised-button (click)="checkOutCart()" color="primary">Zur Kasse</button>
+            </mat-list-item>
         </mat-list>
     </mat-card>
 </div>
