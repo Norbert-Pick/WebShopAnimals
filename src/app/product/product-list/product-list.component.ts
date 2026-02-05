@@ -2,6 +2,7 @@ import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { CartService } from 'src/app/cart/cart.service';
@@ -16,6 +17,7 @@ import { ProductService } from '../product.service';
     MatCardModule,
     MatButtonModule,
     MatSnackBarModule,
+    MatFormFieldModule,
     MatInputModule,
     CommonModule,
     CurrencyPipe],
@@ -36,6 +38,7 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
     this.productService.getProducts().subscribe((geholteProduktliste) => {
       this.products = geholteProduktliste;
+      this.filteredProducts = geholteProduktliste;
     });
   }
 
@@ -47,7 +50,7 @@ export class ProductListComponent implements OnInit {
           duration: 3000,
           verticalPosition: 'top',
           horizontalPosition: 'right',
-          panelClass: ['app-snackbar-top-left', 'app-snackbar-text-14']
+          panelClass: ['app-snackbar-top-right', 'app-snackbar-text-14']
         },);
       }
     });
@@ -56,14 +59,9 @@ export class ProductListComponent implements OnInit {
   applyFilter(event: Event): void {
     let searchTerm = (event.target as HTMLInputElement).value;
     searchTerm = searchTerm.toLowerCase();
-    this this.filteredProducts = this.products.filter(
-        (product: product.n) => {})
+    this.filteredProducts = this.products.filter(
+        product => product.name.toLowerCase().includes(searchTerm)
+    );
+    };
 
-      const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
-    this.productService.getProducts().subscribe((geholteProduktliste) => {
-      this.products = geholteProduktliste.filter(product =>
-        product.name.toLowerCase().includes(filterValue) ||
-        product.description.toLowerCase().includes(filterValue)
-      );
-    });
 }

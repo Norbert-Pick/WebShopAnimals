@@ -2,9 +2,14 @@
 
     <h2 class="text-[16pt] text-center mb-8 bg-[rgb(204,204,204)] py-2">Zuletzt hinzugefügte Bilder</h2>
 
+    <mat-form-field appearance="outline" class="w-full mb-6">
+        <mat-label>Filtern...</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Filtern..." class="p-2 border border-gray-300 rounded" />
+    </mat-form-field>
+
     <div class="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-4">
 
-        @for (product of products; track product.id) {
+        @for (product of filteredProducts; track product.id) {
         <mat-card class="product-card mat-elevation-z0" (click)="addToCart(product)">
             <img class="product-image" [src]="product.image_url" alt="{{ product.name }}" title="{{ product.name }}" />
             <mat-card-content class="product-info mat-elevation-z0">
