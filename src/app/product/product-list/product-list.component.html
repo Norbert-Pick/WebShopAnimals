@@ -1,11 +1,29 @@
 <div class="w-full px-[75px]">
 
-    <h2 class="text-[16pt] text-center mb-8 bg-[rgb(204,204,204)] py-2">Zuletzt hinzugefügte Bilder</h2>
+    <h2 class="text-[16pt] text-center mb-8 bg-[rgb(204,204,204)] py-2">Verfügbare Bilder</h2>
 
-    <mat-form-field appearance="outline" class="w-full mb-6">
-        <mat-label>Filtern...</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Filtern..." class="p-2 border border-gray-300 rounded" />
-    </mat-form-field>
+    <!-- Filter- und Sortierzeile -->
+    <div class="flex flex-wrap items-center gap-5 mb-6" style="gap:20px">
+        <!-- Filtern -->
+        <div class="flex items-center flex-1 min-w-[260px]">
+            <label for="filterInput" class="mr-2">Filtern:</label>
+            <mat-form-field appearance="outline" class="w-full">
+                <input id="filterInput" matInput (keyup)="applyFilter($event)" placeholder="Filtern..." />
+            </mat-form-field>
+        </div>
+        <!-- Sortieren -->
+        <div class="flex items-center flex-1 min-w-[260px]">
+            <label for="sortSelect" class="mr-2">Sortieren:</label>
+            <mat-form-field appearance="outline" class="w-full">
+                <mat-select id="sortSelect" (selectionChange)="sortProducts($event.value)">
+                    <mat-option value="priceLowHigh">Preis aufsteigend</mat-option>
+                    <mat-option value="priceHighLow">Preis absteigend</mat-option>
+                    <mat-option value="nameHighLow">Name aufsteigend</mat-option>
+                    <mat-option value="nameLowHigh">Name absteigend</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
 
     <div class="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-4">
 

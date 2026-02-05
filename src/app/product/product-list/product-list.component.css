@@ -62,4 +62,7 @@ mat-card-subtitle:hover {
     transform: scale(1.25);
     cursor: pointer;
     color: rgb(55, 0, 255);
-} 
+}
+.sort-dropdown {
+  margin-left: 20px;
+}
